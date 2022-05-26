@@ -1,12 +1,14 @@
-﻿using BC.Bicycles.Repositories.Configurations;
-using BC.Problems.Models;
+﻿using BC.Problems.Models;
+using BC.Problems.Repositories.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BC.Problems.Repositories
 {
     public class RepositoryContext : DbContext
     {
-        public DbSet<Bicycle> Bicycles { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Problem> Problems { get; set; }
+        public DbSet<PartModelProblem> PartModelProblems { get; set; }
 
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
             : base(options)
@@ -16,7 +18,9 @@ namespace BC.Problems.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new BicycleConfiguration());
+            modelBuilder.ApplyConfiguration(new AddressConfiguration());
+            modelBuilder.ApplyConfiguration(new PartModelProblemConfiguration());
+            modelBuilder.ApplyConfiguration(new ProblemConfiguration());
         }
     }
 }

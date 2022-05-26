@@ -1,4 +1,4 @@
-﻿using BC.Bicycles.Boundary.Response;
+﻿using BC.Problems.Boundary.Response;
 using BC.Problems.Models.Exceptions;
 using Newtonsoft.Json;
 using System.Net;

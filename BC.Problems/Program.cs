@@ -20,8 +20,8 @@ try
 
     services.ConfigureSqlContext(configuration);
     services.AddAutoMapper(typeof(Program));
-    services.RegisterRepositories();
-    services.RegisterServices();
+    //services.RegisterRepositories();
+    //services.RegisterServices();
     services.AddControllers().AddNewtonsoftJson();
     services.ConfigureCorsPolicy();
     services.ConfigureSwagger();

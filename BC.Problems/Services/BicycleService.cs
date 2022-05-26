@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BC.Bicycles.Models.Exceptions;
+using BC.Problems.Models.Exceptions;
 using BC.Problems.Boundary.Features;
 using BC.Problems.Boundary.Request;
 using BC.Problems.Boundary.Response;
