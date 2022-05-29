@@ -11,8 +11,8 @@ public class ProblemForReadModel
     public string UserEmail { get; set; }
     public ProblemAddressModel Address { get; set; }
     public DateTime DateCreated { get; set; }
-    public DateTime DateFinished { get; set; }
-    public ProblemStage Stage { get; set; }
+    public DateTime? DateFinished { get; set; }
+    public string Stage { get; set; }
     public string Description { get; set; }
     public ICollection<ProblemPartModel> Parts { get; set; }
 }

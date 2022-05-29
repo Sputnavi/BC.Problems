@@ -1,4 +1,7 @@
 ﻿using BC.Problems.Repositories;
+using BC.Problems.Repositories.Interfaces;
+using BC.Problems.Services;
+using BC.Problems.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -12,12 +15,12 @@ public static class ServiceExtensions
 
     public static void RegisterRepositories(this IServiceCollection services)
     {
-        throw new NotImplementedException();
+        services.AddScoped<IProblemRepository, ProblemRepository>();
     }
 
     public static void RegisterServices(this IServiceCollection services)
     {
-        throw new NotImplementedException();
+        services.AddScoped<IProblemService, ProblemService>();
     }
 
     public static void ConfigureCorsPolicy(this IServiceCollection services)

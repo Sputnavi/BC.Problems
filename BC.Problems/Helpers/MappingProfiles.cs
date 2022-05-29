@@ -14,8 +14,11 @@ public class MappingProfiles : Profile
         CreateMap<ProblemForCreateModel, Problem>()
             .ForMember(destination => destination.DateCreated, x => x.MapFrom(src => DateTime.UtcNow))
             .ForMember(destination => destination.Stage, x => x.MapFrom(src => ProblemStage.New));
-        
-        CreateMap<ProblemForUpdateModel, Problem>().ReverseMap();
+
+        CreateMap<ProblemAddressModel, Address>().ReverseMap();
+
+        CreateMap<ProblemForUpdateModel, Problem>()
+            .ForMember(destination => destination.Stage, x => x.MapFrom(src => Enum.Parse<ProblemStage>(src.Stage)));
         CreateMap<ProblemForReadModel, ProblemForUpdateModel>();
 
         CreateMap<ProblemPartModel, PartModelProblem>();

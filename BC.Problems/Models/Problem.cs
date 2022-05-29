@@ -10,7 +10,7 @@ public class Problem
     public string UserEmail { get; set; }
     public Address Address { get; set; }
     public DateTime DateCreated { get; set; }
-    public DateTime DateFinished { get; set; }
+    public DateTime? DateFinished { get; set; }
     public ProblemStage Stage { get; set; }
     public string Description { get; set; }
     public ICollection<PartModelProblem> PartModelProblems { get; set; }
