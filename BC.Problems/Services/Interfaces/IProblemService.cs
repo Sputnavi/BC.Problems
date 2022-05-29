@@ -9,7 +9,7 @@ public interface IProblemService
     Task<List<ProblemForReadModel>> GetProblemListAsync(ProblemParameters problemParameters, HttpResponse response);
     Task<ProblemForReadModel> GetProblemAsync(Guid id);
     Task<Guid> CreateProblemAsync(ProblemForCreateModel model);
-    Task UpdateProblemAsync(Guid id, ProblemForCreateModel model);
+    Task UpdateProblemAsync(Guid id, ProblemForUpdateModel model);
     Task DeleteProblemAsync(Guid id);
     Task<ProblemForUpdateModel> GetProblemForUpdateModelAsync(Guid id);
 }

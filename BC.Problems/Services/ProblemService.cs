@@ -62,7 +62,7 @@ public class ProblemService : IProblemService
         await _problemRepository.DeleteProblemAsync(problemEntity);
     }
 
-    public async Task UpdateProblemAsync(Guid id, ProblemForCreateModel model)
+    public async Task UpdateProblemAsync(Guid id, ProblemForUpdateModel model)
     {
         var problemEntity = await _problemRepository.GetProblemAsync(id);
         CheckIfFound(id, problemEntity);
