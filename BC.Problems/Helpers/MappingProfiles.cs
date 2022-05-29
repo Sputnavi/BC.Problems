@@ -9,10 +9,11 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<Bicycle, BicycleForReadModel>();
-        CreateMap<BicycleForCreateOrUpdateModel, Bicycle>().ReverseMap();
-        CreateMap<BicycleForReadModel, BicycleForCreateOrUpdateModel>();
-
-        // ToDo: make here default start date.
+        CreateMap<Problem, ProblemForReadModel>();
+        CreateMap<ProblemForCreateModel, Problem>()
+            .ForMember(destination => destination.DateCreated, x => x.MapFrom(src => DateTime.UtcNow));
+        
+        CreateMap<ProblemForUpdateModel, Problem>().ReverseMap();
+        CreateMap<ProblemForReadModel, ProblemForUpdateModel>();
     }
 }
