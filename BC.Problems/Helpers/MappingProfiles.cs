@@ -11,9 +11,13 @@ public class MappingProfiles : Profile
     {
         CreateMap<Problem, ProblemForReadModel>();
         CreateMap<ProblemForCreateModel, Problem>()
-            .ForMember(destination => destination.DateCreated, x => x.MapFrom(src => DateTime.UtcNow));
+            .ForMember(destination => destination.DateCreated, x => x.MapFrom(src => DateTime.UtcNow))
+            .ForMember(destination => destination.Stage, x => x.MapFrom(src => ProblemStage.New));
         
         CreateMap<ProblemForUpdateModel, Problem>().ReverseMap();
         CreateMap<ProblemForReadModel, ProblemForUpdateModel>();
+
+        CreateMap<Boundary.Request.ProblemPartModel, PartModelProblem>();
+        CreateMap<PartModelProblem, Boundary.Response.ProblemPartModel>();
     }
 }
