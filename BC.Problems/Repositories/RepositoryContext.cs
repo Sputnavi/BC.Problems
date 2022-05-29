@@ -6,7 +6,6 @@ namespace BC.Problems.Repositories
 {
     public class RepositoryContext : DbContext
     {
-        public DbSet<Address> Addresses { get; set; }
         public DbSet<Problem> Problems { get; set; }
         public DbSet<PartModelProblem> PartModelProblems { get; set; }
 
@@ -18,7 +17,6 @@ namespace BC.Problems.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AddressConfiguration());
             modelBuilder.ApplyConfiguration(new PartModelProblemConfiguration());
             modelBuilder.ApplyConfiguration(new ProblemConfiguration());
         }

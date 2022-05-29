@@ -8,7 +8,6 @@ public class Problem
     public string BicycleSerialNumber { get; set; }
     public Guid? UserId { get; set; }
     public string UserEmail { get; set; }
-    public Guid AddressId { get; set; }
     public Address Address { get; set; }
     public string Place { get; set; }
     public DateTime DateCreated { get; set; }
