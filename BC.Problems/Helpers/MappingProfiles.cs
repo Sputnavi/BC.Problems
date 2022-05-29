@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BC.Problems.Boundary.Common;
 using BC.Problems.Boundary.Request;
 using BC.Problems.Boundary.Response;
 using BC.Problems.Models;
@@ -17,7 +18,7 @@ public class MappingProfiles : Profile
         CreateMap<ProblemForUpdateModel, Problem>().ReverseMap();
         CreateMap<ProblemForReadModel, ProblemForUpdateModel>();
 
-        CreateMap<Boundary.Request.ProblemPartModel, PartModelProblem>();
-        CreateMap<PartModelProblem, Boundary.Response.ProblemPartModel>();
+        CreateMap<ProblemPartModel, PartModelProblem>();
+        CreateMap<PartModelProblem, ProblemPartModel>();
     }
 }

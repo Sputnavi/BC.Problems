@@ -1,4 +1,4 @@
-﻿namespace BC.Problems.Boundary.Response;
+﻿namespace BC.Problems.Boundary.Common;
 
 public class ProblemPartModel
 {

@@ -1,4 +1,5 @@
-﻿using BC.Problems.Models;
+﻿using BC.Problems.Boundary.Common;
+using BC.Problems.Models;
 
 namespace BC.Problems.Boundary.Response;
 

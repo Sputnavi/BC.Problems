@@ -1,4 +1,6 @@
-﻿namespace BC.Problems.Boundary.Request;
+﻿using BC.Problems.Boundary.Common;
+
+namespace BC.Problems.Boundary.Request;
 
 public class ProblemForUpdateModel
 {
