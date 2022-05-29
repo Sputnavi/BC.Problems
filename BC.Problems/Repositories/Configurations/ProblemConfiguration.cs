@@ -12,9 +12,6 @@ public class ProblemConfiguration : IEntityTypeConfiguration<Problem>
 
         builder.OwnsOne(p => p.Address);
 
-        builder.Property(x => x.Place)
-            .HasMaxLength(2048);
-
         builder.Property(x => x.Stage)
             .HasDefaultValue(ProblemStage.New);
 

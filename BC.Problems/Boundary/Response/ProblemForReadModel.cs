@@ -10,7 +10,6 @@ public class ProblemForReadModel
     public Guid? UserId { get; set; }
     public string UserEmail { get; set; }
     public ProblemAddressModel Address { get; set; }
-    public string Place { get; set; }
     public DateTime DateCreated { get; set; }
     public DateTime DateFinished { get; set; }
     public ProblemStage Stage { get; set; }
