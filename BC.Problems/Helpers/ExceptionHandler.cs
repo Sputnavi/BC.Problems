@@ -3,45 +3,44 @@ using BC.Problems.Models.Exceptions;
 using Newtonsoft.Json;
 using System.Net;
 
-namespace BC.Problems.Helpers
+namespace BC.Problems.Helpers;
+
+public class ExceptionHandler
 {
-    public class ExceptionHandler
+    private readonly RequestDelegate _next;
+
+    public ExceptionHandler(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public ExceptionHandler(RequestDelegate next)
+    public async Task Invoke(HttpContext context)
+    {
+        try
         {
-            _next = next;
+            await _next.Invoke(context);
         }
-
-        public async Task Invoke(HttpContext context)
+        catch (EntityNotFoundException ex)
         {
-            try
-            {
-                await _next.Invoke(context);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.NotFound);
-            }
-            catch (ArgumentException ex)
-            {
-                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.BadRequest);
-            }
-            catch (Exception ex)
-            {
-                await HandleExceptionAsync(context, ex.Message, HttpStatusCode.InternalServerError);
-            }
+            await HandleExceptionAsync(context, ex.Message, HttpStatusCode.NotFound);
         }
-
-        private async Task HandleExceptionAsync(HttpContext context, string message, HttpStatusCode code)
+        catch (ArgumentException ex)
         {
-            var response = context.Response;
-
-            response.ContentType = "application/json";
-            response.StatusCode = (int)code;
-
-            await response.WriteAsync(JsonConvert.SerializeObject(new BaseResponseModel(code, message)));
+            await HandleExceptionAsync(context, ex.Message, HttpStatusCode.BadRequest);
         }
+        catch (Exception ex)
+        {
+            await HandleExceptionAsync(context, ex.Message, HttpStatusCode.InternalServerError);
+        }
+    }
+
+    private async Task HandleExceptionAsync(HttpContext context, string message, HttpStatusCode code)
+    {
+        var response = context.Response;
+
+        response.ContentType = "application/json";
+        response.StatusCode = (int)code;
+
+        await response.WriteAsync(JsonConvert.SerializeObject(new BaseResponseModel(code, message)));
     }
 }

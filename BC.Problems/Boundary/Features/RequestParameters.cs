@@ -1,33 +1,32 @@
-﻿namespace BC.Problems.Boundary.Features
+﻿namespace BC.Problems.Boundary.Features;
+
+public class RequestParameters
 {
-    public class RequestParameters
+    const int maxPageSize = 50;
+
+    /// <summary>
+    /// Page Number
+    /// </summary>
+    /// <example>1</example>
+    public int PageNumber { get; set; } = 1;
+
+    private int _pageSize = 10;
+    /// <summary>
+    /// Page size
+    /// </summary>
+    /// <example>10</example>
+    public int PageSize
     {
-        const int maxPageSize = 50;
-
-        /// <summary>
-        /// Page Number
-        /// </summary>
-        /// <example>1</example>
-        public int PageNumber { get; set; } = 1;
-
-        private int _pageSize = 10;
-        /// <summary>
-        /// Page size
-        /// </summary>
-        /// <example>10</example>
-        public int PageSize
+        get => _pageSize;
+        set
         {
-            get => _pageSize;
-            set
-            {
-                _pageSize = value > maxPageSize ? maxPageSize : value;
-            }
+            _pageSize = value > maxPageSize ? maxPageSize : value;
         }
-
-        /// <summary>
-        /// Rule how to order records
-        /// </summary>
-        /// <example>name</example>
-        public string OrderBy { get; set; }
     }
+
+    /// <summary>
+    /// Rule how to order records
+    /// </summary>
+    /// <example>name</example>
+    public string OrderBy { get; set; }
 }

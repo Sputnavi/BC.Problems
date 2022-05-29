@@ -1,12 +1,11 @@
-﻿namespace BC.Problems.Boundary.Features
-{
-    public class ProblemParameters : RequestParameters
-    {
-        public ProblemParameters()
-        {
-            OrderBy = "dataCreated";
-        }
+﻿namespace BC.Problems.Boundary.Features;
 
-        public string SearchTerm { get; set; }
+public class ProblemParameters : RequestParameters
+{
+    public ProblemParameters()
+    {
+        OrderBy = "dataCreated";
     }
+
+    public string SearchTerm { get; set; }
 }
