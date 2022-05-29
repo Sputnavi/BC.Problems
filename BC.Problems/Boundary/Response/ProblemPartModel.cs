@@ -1,6 +1,6 @@
-﻿namespace BC.Problems.Boundary.Request;
+﻿namespace BC.Problems.Boundary.Response;
 
-public class ProblemForCreatePartModel
+public class ProblemPartModel
 {
     public Guid? Id { get; set; }
     public string Name { get; set; }

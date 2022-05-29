@@ -1,6 +1,6 @@
-﻿namespace BC.Problems.Boundary.Request;
+﻿namespace BC.Problems.Boundary.Response;
 
-public class ProblemForCreateAddressModel
+public class ProblemAddressModel
 {
     public string AddressLine1 { get; set; }
     public string AddressLine2 { get; set; }

@@ -12,5 +12,7 @@ public class MappingProfiles : Profile
         CreateMap<Bicycle, BicycleForReadModel>();
         CreateMap<BicycleForCreateOrUpdateModel, Bicycle>().ReverseMap();
         CreateMap<BicycleForReadModel, BicycleForCreateOrUpdateModel>();
+
+        // ToDo: make here default start date.
     }
 }
