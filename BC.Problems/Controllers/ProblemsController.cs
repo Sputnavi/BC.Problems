@@ -32,8 +32,8 @@ public class ProblemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
-    [HttpGet]
-    [HttpHead]
+    [HttpGet(Name = "GetProblemList")]
+    [HttpHead(Name = "HeadProblemList")]
     public async Task<IActionResult> GetProblemList([FromQuery] ProblemParameters problemParameters)
     {
         var problems = await _problemService.GetProblemListAsync(problemParameters, Response);
@@ -77,7 +77,7 @@ public class ProblemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
-    [HttpPost]
+    [HttpPost(Name = "CreateProblem")]
     public async Task<IActionResult> CreateProblem([FromBody] ProblemForCreateModel problem)
     {
         this.ValidateObject();
@@ -101,7 +101,7 @@ public class ProblemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
-    [HttpDelete("{id}")]
+    [HttpDelete("{id}", Name = "DeleteProblem")]
     public async Task<IActionResult> DeleteProblem(Guid id)
     {
         await _problemService.DeleteProblemAsync(id);
@@ -126,7 +126,7 @@ public class ProblemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
-    [HttpPut("{id}")]
+    [HttpPut("{id}", Name = "UpdateProblem")]
     public async Task<IActionResult> UpdateProblem(Guid id, [FromBody] ProblemForUpdateModel problem)
     {
         this.ValidateObject();
@@ -153,7 +153,7 @@ public class ProblemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
-    [HttpPatch("{id}")]
+    [HttpPatch("{id}", Name = "PartiallyUpdateProblem") ]
     public async Task<IActionResult> PartiallyUpdateProblem(Guid id,
         [FromBody] JsonPatchDocument<ProblemForUpdateModel> patchDoc)
     {
