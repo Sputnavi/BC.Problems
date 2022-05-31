@@ -21,6 +21,10 @@ public class ProblemRepository : RepositoryBase<Problem>, IProblemRepository
 
     public async Task<Problem> GetProblemAsync(Guid id) =>
         await FindByCondition(p => p.Id.Equals(id)).SingleOrDefaultAsync();
+    public async Task<Problem> GetProblemWithPartsAsync(Guid id) =>
+        await FindByCondition(p => p.Id.Equals(id))
+        .Include(p => p.PartModelProblems)
+        .SingleOrDefaultAsync();
 
     public async Task<PagedList<Problem>> GetProblemsAsync(ProblemParameters problemParameters)
     {

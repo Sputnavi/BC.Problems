@@ -76,7 +76,7 @@ public class ProblemService : IProblemService
 
     public async Task<ProblemForReadModel> GetProblemAsync(Guid id)
     {
-        var problemEntity = await _problemRepository.GetProblemAsync(id);
+        var problemEntity = await _problemRepository.GetProblemWithPartsAsync(id);
         CheckIfFound(id, problemEntity);
         return _mapper.Map<ProblemForReadModel>(problemEntity);
     }

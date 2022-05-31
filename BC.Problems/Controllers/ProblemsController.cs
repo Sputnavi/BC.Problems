@@ -92,7 +92,7 @@ public class ProblemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
-    [HttpGet("new")]
+    [HttpGet("new", Name = "GetNewProblemList")]
     public async Task<IActionResult> GetNewProblemList([FromQuery] ProblemParameters problemParameters)
     {
         var problems = await _problemService.GetNewProblemListAsync(problemParameters, Response);
