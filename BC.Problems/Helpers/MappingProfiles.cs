@@ -10,10 +10,18 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<Problem, ProblemForReadModel>();
+        CreateMap<Problem, ProblemForReadModel>()
+            .ForMember(dest => dest.Parts, x => x.MapFrom(src => src.PartModelProblems))
+            .ForMember(dest => dest.Bicycle, x => x.MapFrom(src => new ProblemBicycleModel
+            {
+                Id = src.BicycleId,
+                Model = src.BicycleModel,
+                SerialNumber = src.BicycleSerialNumber
+            }));
         CreateMap<ProblemForCreateModel, Problem>()
             .ForMember(destination => destination.DateCreated, x => x.MapFrom(src => DateTime.UtcNow))
-            .ForMember(destination => destination.Stage, x => x.MapFrom(src => ProblemStage.New));
+            .ForMember(destination => destination.Stage, x => x.MapFrom(src => ProblemStage.New))
+            .ForMember(dest => dest.PartModelProblems, x => x.MapFrom(src => src.Parts));
 
         CreateMap<ProblemAddressModel, Address>().ReverseMap();
 

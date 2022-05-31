@@ -10,4 +10,5 @@ public interface IProblemRepository
     Task CreateProblemAsync(Problem problem);
     Task DeleteProblemAsync(Problem problem);
     Task UpdateProblemAsync(Problem problem);
+    Task<PagedList<Problem>> GetUserProblemsAsync(Guid userId, ProblemParameters problemParameters);
 }

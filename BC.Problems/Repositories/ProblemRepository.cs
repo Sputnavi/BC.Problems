@@ -31,4 +31,15 @@ public class ProblemRepository : RepositoryBase<Problem>, IProblemRepository
 
         return PagedList<Problem>.ToPagedList(problems, problemParameters.PageNumber, problemParameters.PageSize);
     }
+    
+    public async Task<PagedList<Problem>> GetUserProblemsAsync(Guid userId, ProblemParameters problemParameters)
+    {
+        var problems = await FindByCondition(p => p.UserId == userId)
+            .Search(problemParameters.SearchTerm)
+            .Sort(problemParameters.OrderBy)
+            .Include(p => p.PartModelProblems)
+            .ToListAsync();
+
+        return PagedList<Problem>.ToPagedList(problems, problemParameters.PageNumber, problemParameters.PageSize);
+    }
 }
