@@ -43,6 +43,17 @@ public class ProblemRepository : RepositoryBase<Problem>, IProblemRepository
         return PagedList<Problem>.ToPagedList(problems, problemParameters.PageNumber, problemParameters.PageSize);
     }
 
+    public async Task<PagedList<Problem>> GetMasterProblemsAsync(Guid masterId, ProblemParameters problemParameters)
+    {
+        var problems = await FindByCondition(p => p.MasterId == masterId)
+            .Search(problemParameters.SearchTerm)
+            .Sort(problemParameters.OrderBy)
+            .Include(p => p.PartModelProblems)
+            .ToListAsync();
+
+        return PagedList<Problem>.ToPagedList(problems, problemParameters.PageNumber, problemParameters.PageSize);
+    }
+
     public async Task<PagedList<Problem>> GetNewProblemsAsync(ProblemParameters problemParameters)
     {
         var problems = await FindByCondition(p => p.Stage == ProblemStage.New)
