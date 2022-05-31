@@ -14,5 +14,5 @@ public class ProblemForReadModel
     public DateTime? DateFinished { get; set; }
     public string Stage { get; set; }
     public string Description { get; set; }
-    public ICollection<ProblemPartModel> Parts { get; set; }
+    public ICollection<ProblemPartModelModel> PartModels { get; set; }
 }

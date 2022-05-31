@@ -11,7 +11,7 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<Problem, ProblemForReadModel>()
-            .ForMember(dest => dest.Parts, x => x.MapFrom(src => src.PartModelProblems))
+            .ForMember(dest => dest.PartModels, x => x.MapFrom(src => src.PartModelProblems))
             .ForMember(dest => dest.Bicycle, x => x.MapFrom(src => new ProblemBicycleModel
             {
                 Id = src.BicycleId,
@@ -21,7 +21,7 @@ public class MappingProfiles : Profile
         CreateMap<ProblemForCreateModel, Problem>()
             .ForMember(destination => destination.DateCreated, x => x.MapFrom(src => DateTime.UtcNow))
             .ForMember(destination => destination.Stage, x => x.MapFrom(src => ProblemStage.New))
-            .ForMember(dest => dest.PartModelProblems, x => x.MapFrom(src => src.Parts));
+            .ForMember(dest => dest.PartModelProblems, x => x.MapFrom(src => src.PartModels));
 
         CreateMap<ProblemAddressModel, Address>().ReverseMap();
 
@@ -29,7 +29,7 @@ public class MappingProfiles : Profile
             .ForMember(destination => destination.Stage, x => x.MapFrom(src => Enum.Parse<ProblemStage>(src.Stage)));
         CreateMap<ProblemForReadModel, ProblemForUpdateModel>();
 
-        CreateMap<ProblemPartModel, PartModelProblem>();
-        CreateMap<PartModelProblem, ProblemPartModel>();
+        CreateMap<ProblemPartModelModel, PartModelProblem>();
+        CreateMap<PartModelProblem, ProblemPartModelModel>();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace BC.Problems.Boundary.Common;
 
-public class ProblemPartModel
+public class ProblemPartModelModel
 {
     public Guid PartId { get; set; }
     public string PartName { get; set; }
