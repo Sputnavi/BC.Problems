@@ -27,6 +27,8 @@ public class MappingProfiles : Profile
 
         CreateMap<ProblemForUpdateModel, Problem>()
             .ForMember(destination => destination.Stage, x => x.MapFrom(src => Enum.Parse<ProblemStage>(src.Stage)));
+        CreateMap<ProblemProgressForUpdateModel, Problem>()
+            .ForMember(destination => destination.Stage, x => x.MapFrom(src => Enum.Parse<ProblemStage>(src.Stage)));
         CreateMap<ProblemForReadModel, ProblemForUpdateModel>();
 
         CreateMap<ProblemPartModelModel, PartModelProblem>();

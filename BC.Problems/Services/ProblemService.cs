@@ -107,6 +107,15 @@ public class ProblemService : IProblemService
         await _problemRepository.UpdateProblemAsync(problemEntity);
     }
 
+    public async Task UpdateProblemProgressAsync(Guid id, ProblemProgressForUpdateModel model)
+    {
+        var problemEntity = await _problemRepository.GetProblemAsync(id);
+        CheckIfFound(id, problemEntity);
+
+        _mapper.Map(model, problemEntity);
+        await _problemRepository.UpdateProblemAsync(problemEntity);
+    }
+
     public async Task<ProblemForUpdateModel> GetProblemForUpdateModelAsync(Guid id)
     {
         var problemEntity = await GetProblemAsync(id);

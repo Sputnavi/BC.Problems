@@ -196,6 +196,33 @@ public class ProblemsController : ControllerBase
     }
 
     /// <summary>
+    /// Update Problem progress.
+    /// </summary>
+    /// <param name="id" example="D9F9841A-AACF-4BC4-924C-04C46E8274F1">The value that is used to find Problem</param>
+    /// <param name="problemProgress">The Problem progress object which is used for update Problem with provided id</param>
+    /// <response code="204">Problem updated successfully</response>
+    /// <response code="400">Problem progress model is invalid</response>
+    /// <response code="401">You need to authorize first</response>
+    /// <response code="403">Your role dosn't have enough rights</response>
+    /// <response code="404">Problem with provided id cannot be found!</response>
+    /// <response code="500">Internal Server Error</response>
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponseModel))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(BaseResponseModel))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseResponseModel))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
+    [HttpPut("{id}/progress", Name = "UpdateProblemProgress")]
+    public async Task<IActionResult> UpdateProblemProgress(Guid id, [FromBody] ProblemProgressForUpdateModel problemProgress)
+    {
+        this.ValidateObject();
+
+        await _problemService.UpdateProblemProgressAsync(id, problemProgress);
+
+        return NoContent();
+    }
+
+    /// <summary>
     /// Partially update Problem information.
     /// </summary>
     /// <param name="id" example="D9F9841A-AACF-4BC4-924C-04C46E8274F1">The value that is used to find Problem</param>

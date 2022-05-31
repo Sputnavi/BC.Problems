@@ -10,6 +10,7 @@ public interface IProblemService
     Task<ProblemForReadModel> GetProblemAsync(Guid id);
     Task<Guid> CreateProblemAsync(ProblemForCreateModel model);
     Task UpdateProblemAsync(Guid id, ProblemForUpdateModel model);
+    Task UpdateProblemProgressAsync(Guid id, ProblemProgressForUpdateModel model);
     Task DeleteProblemAsync(Guid id);
     Task<ProblemForUpdateModel> GetProblemForUpdateModelAsync(Guid id);
     Task<List<ProblemForReadModel>> GetUserProblemListAsync(Guid userId, ProblemParameters problemParameters, HttpResponse response = null);
