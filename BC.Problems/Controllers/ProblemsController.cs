@@ -56,7 +56,26 @@ public class ProblemsController : ControllerBase
 
     public async Task<IActionResult> GetUserProblemsList(Guid userId, [FromQuery] ProblemParameters problemParameters)
     {
-        var problems = await _problemService.GetUserProblemsListAsync(userId, problemParameters, Response);
+        var problems = await _problemService.GetUserProblemListAsync(userId, problemParameters, Response);
+
+        return Ok(problems);
+    }
+
+    /// <summary>
+    /// Return a list of all new Problems.
+    /// </summary>
+    /// <response code="200">List of new problems returned successfully</response>
+    /// <response code="401">You need to authorize first</response>
+    /// <response code="403">Your role dosn't have enough rights</response>
+    /// <response code="500">Internal Server Error</response>
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProblemForReadModel[]))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(BaseResponseModel))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(BaseResponseModel))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponseModel))]
+    [HttpGet("new")]
+    public async Task<IActionResult> GetNewProblemList([FromQuery] ProblemParameters problemParameters)
+    {
+        var problems = await _problemService.GetNewProblemListAsync(problemParameters, Response);
 
         return Ok(problems);
     }

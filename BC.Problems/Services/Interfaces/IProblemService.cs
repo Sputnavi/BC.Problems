@@ -12,5 +12,6 @@ public interface IProblemService
     Task UpdateProblemAsync(Guid id, ProblemForUpdateModel model);
     Task DeleteProblemAsync(Guid id);
     Task<ProblemForUpdateModel> GetProblemForUpdateModelAsync(Guid id);
-    Task<List<ProblemForReadModel>> GetUserProblemsListAsync(Guid userId, ProblemParameters problemParameters, HttpResponse response = null);
+    Task<List<ProblemForReadModel>> GetUserProblemListAsync(Guid userId, ProblemParameters problemParameters, HttpResponse response = null);
+    Task<List<ProblemForReadModel>> GetNewProblemListAsync(ProblemParameters problemParameters, HttpResponse response = null);
 }

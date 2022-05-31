@@ -38,9 +38,21 @@ public class ProblemService : IProblemService
         return _mapper.Map<List<ProblemForReadModel>>(problems);
     }
     
-    public async Task<List<ProblemForReadModel>> GetUserProblemsListAsync(Guid userId, ProblemParameters problemParameters, HttpResponse response = null)
+    public async Task<List<ProblemForReadModel>> GetUserProblemListAsync(Guid userId, ProblemParameters problemParameters, HttpResponse response = null)
     {
         var problems = await _problemRepository.GetUserProblemsAsync(userId, problemParameters); // ToDo: should we check user id ??
+
+        if (response != null)
+        {
+            response.Headers.Add("Pagination", JsonConvert.SerializeObject(problems.MetaData));
+        }
+
+        return _mapper.Map<List<ProblemForReadModel>>(problems);
+    }
+
+    public async Task<List<ProblemForReadModel>> GetNewProblemListAsync(ProblemParameters problemParameters, HttpResponse response = null)
+    {
+        var problems = await _problemRepository.GetNewProblemsAsync(problemParameters);
 
         if (response != null)
         {
