@@ -25,6 +25,7 @@ try
     services.AddControllers().AddNewtonsoftJson();
     services.ConfigureCorsPolicy();
     services.ConfigureSwagger();
+    services.AddBCMessaging(configuration, builder.Environment.IsDevelopment());
 
     var app = builder.Build();
 

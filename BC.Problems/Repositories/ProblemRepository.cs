@@ -1,4 +1,5 @@
-﻿using BC.Problems.Boundary.Features;
+﻿using BC.Messaging;
+using BC.Problems.Boundary.Features;
 using BC.Problems.Models;
 using BC.Problems.Repositories.Extensions;
 using BC.Problems.Repositories.Interfaces;
@@ -67,5 +68,29 @@ public class ProblemRepository : RepositoryBase<Problem>, IProblemRepository
             .ToListAsync();
 
         return PagedList<Problem>.ToPagedList(problems, problemParameters.PageNumber, problemParameters.PageSize);
+    }
+
+    public async Task UpdateProblemsUserInfoAsync(UserUpdated userUpdated)
+    {
+        var problemsToUpdate = FindByCondition(x => x.UserId == userUpdated.Id);
+
+        foreach (var problem in problemsToUpdate)
+        {
+            problem.UserEmail = userUpdated.Email;
+        }
+
+        await _repositoryContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteProblemsUserInfoAsync(UserDeleted userDeleted)
+    {
+        var problemsToUpdate = FindByCondition(x => x.UserId == userDeleted.Id);
+
+        foreach (var problem in problemsToUpdate)
+        {
+            problem.UserId = null;
+        }
+
+        await _repositoryContext.SaveChangesAsync();
     }
 }
