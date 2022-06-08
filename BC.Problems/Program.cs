@@ -23,7 +23,7 @@ try
     services.RegisterRepositories();
     services.RegisterServices();
     services.AddControllers().AddNewtonsoftJson();
-    services.ConfigureCorsPolicy();
+    services.ConfigureCorsPolicy(configuration);
     services.ConfigureSwagger();
     services.AddBCMessaging(configuration, builder.Environment.IsDevelopment());
 
